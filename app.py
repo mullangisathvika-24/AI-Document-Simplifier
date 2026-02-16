@@ -309,23 +309,25 @@ def extract_text_from_pdf(pdf_file, max_pages: int = 10) -> Tuple[Optional[str],
                 st.warning(f"⚠️ Could not read page {page_num + 1}")
                 continue
         
-        pdf_document.close()
+        # Close document before checking text
+        if pdf_document:
+            pdf_document.close()
         
         if not text.strip():
             return None, "PDF appears empty or contains only images.", total_pages
+        
         if len(text) > 1_000_000:
             return None, "Text too large. Please use a smaller document.", total_pages
         
         return text, None, total_pages
         
     except Exception as e:
-        return None, f"Error reading PDF: {str(e)}", 0
-    finally:
         if pdf_document:
             try:
                 pdf_document.close()
             except:
                 pass
+        return None, f"Error reading PDF: {str(e)}", 0
 
 @st.cache_data(show_spinner=False, ttl=3600)
 def get_summary(text: str, api_key: str) -> Tuple[Optional[str], Optional[str]]:
