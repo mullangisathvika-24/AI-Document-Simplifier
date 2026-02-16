@@ -332,7 +332,7 @@ def get_summary(text: str, api_key: str) -> Tuple[Optional[str], Optional[str]]:
     """Generate summary using Gemini AI"""
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         prompt = f"Please provide a 3-sentence summary in simple English:\n\n{text[:15000]}"
         response = model.generate_content(prompt)
         return response.text if response and response.text else None, None if response and response.text else "Empty response"
@@ -348,7 +348,7 @@ def get_key_points(text: str, api_key: str) -> Tuple[Optional[str], Optional[str
     """Generate key points using Gemini AI"""
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-1.5-flash')
         prompt = f"Provide exactly 5 key points as bolded bullets (**text**):\n\n{text[:15000]}"
         response = model.generate_content(prompt)
         return response.text if response and response.text else None, None if response and response.text else "Empty response"
