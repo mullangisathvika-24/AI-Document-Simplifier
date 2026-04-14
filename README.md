@@ -1,7 +1,8 @@
 🤖 AI Document Simplifier
 📌 Overview
 
-AI Document Simplifier is a Streamlit-based application that simplifies complex PDF documents by generating concise summaries and key points using AI.
+AI Document Simplifier is a Streamlit-based application that simplifies complex PDF
+documents by generating concise summaries and key points using AI.
 
 🚀 Features
 
